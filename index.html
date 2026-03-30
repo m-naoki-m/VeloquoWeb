@@ -6,163 +6,340 @@
     <title>Veloquo - 動画で英語学習</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif;
-            color: #1a1a1a;
-            background: #fafafa;
+            font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+            color: #1a1a2e;
+            background: #f8f9fc;
             line-height: 1.8;
+            overflow-x: hidden;
         }
+
+        /* Hero */
         .hero {
-            background: linear-gradient(135deg, #4A8AF4, #8B5CF6);
+            position: relative;
+            background: linear-gradient(135deg, #4A8AF4 0%, #6B6FF7 50%, #8B5CF6 100%);
             color: white;
             text-align: center;
-            padding: 80px 20px 60px;
+            padding: 100px 20px 80px;
+            overflow: hidden;
         }
-        .hero h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            letter-spacing: 0.02em;
+
+        .hero::before,
+        .hero::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            background: white;
         }
+
+        .hero::before {
+            width: 400px;
+            height: 400px;
+            top: -120px;
+            right: -80px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            width: 300px;
+            height: 300px;
+            bottom: -100px;
+            left: -60px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(20px, -20px) scale(1.05); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .hero-logo {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            margin-bottom: 4px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
         .hero .tagline {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 24px;
+            font-size: 1.15rem;
+            font-weight: 500;
+            opacity: 0.92;
+            margin-bottom: 20px;
+            letter-spacing: 0.02em;
+            animation: fadeInUp 0.8s ease-out 0.1s both;
         }
+
         .hero .description {
-            max-width: 600px;
-            margin: 0 auto 32px;
             font-size: 1rem;
+            line-height: 1.9;
             opacity: 0.85;
+            margin-bottom: 36px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
         }
+
         .badge {
             display: inline-block;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
         }
+
         .badge img {
-            height: 50px;
+            height: 52px;
+            transition: transform 0.2s ease;
         }
-        .container {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 0 20px;
+
+        .badge img:hover {
+            transform: scale(1.05);
         }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Features */
         .features {
-            padding: 60px 20px;
+            padding: 80px 20px;
         }
+
         .features h2 {
             text-align: center;
-            font-size: 1.5rem;
-            margin-bottom: 40px;
-            color: #333;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #1a1a2e;
         }
+
+        .features .section-sub {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.95rem;
+            margin-bottom: 48px;
+        }
+
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            max-width: 720px;
+            gap: 20px;
+            max-width: 760px;
             margin: 0 auto;
         }
+
         .feature-card {
             background: white;
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            border-radius: 16px;
+            padding: 28px 24px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.02);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            position: relative;
+            overflow: hidden;
         }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #4A8AF4, #8B5CF6);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(74, 138, 244, 0.1), 0 12px 32px rgba(74, 138, 244, 0.08);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
         .feature-card h3 {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
+            font-weight: 700;
             margin-bottom: 8px;
-            color: #4A8AF4;
+            color: #1a1a2e;
         }
+
         .feature-card p {
-            font-size: 0.95rem;
-            color: #555;
+            font-size: 0.92rem;
+            color: #6b7280;
+            line-height: 1.75;
         }
+
+        /* Support */
         .support {
             background: white;
-            padding: 60px 20px;
+            padding: 72px 20px;
             text-align: center;
+            border-top: 1px solid #f0f0f5;
         }
+
         .support h2 {
             font-size: 1.5rem;
-            margin-bottom: 16px;
-            color: #333;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #1a1a2e;
         }
+
         .support p {
-            color: #555;
+            color: #6b7280;
             margin-bottom: 8px;
+            font-size: 0.95rem;
         }
-        .support a {
+
+        .support .email-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
             color: #4A8AF4;
             text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-top: 8px;
+            padding: 8px 20px;
+            border-radius: 8px;
+            transition: background 0.2s ease;
         }
-        .support a:hover {
-            text-decoration: underline;
+
+        .support .email-link:hover {
+            background: rgba(74, 138, 244, 0.08);
         }
+
+        /* Footer */
         footer {
             text-align: center;
-            padding: 32px 20px;
+            padding: 36px 20px;
             font-size: 0.85rem;
-            color: #999;
+            color: #9ca3af;
+            border-top: 1px solid #f0f0f5;
         }
+
+        footer .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 16px;
+        }
+
         footer a {
-            color: #777;
+            color: #6b7280;
             text-decoration: none;
-            margin: 0 12px;
+            font-size: 0.88rem;
+            transition: color 0.2s ease;
         }
+
         footer a:hover {
-            text-decoration: underline;
+            color: #4A8AF4;
+        }
+
+        /* Scroll animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 480px) {
+            .hero { padding: 72px 20px 56px; }
+            .hero-logo { font-size: 2.4rem; }
+            .features { padding: 56px 16px; }
+            .support { padding: 56px 16px; }
         }
     </style>
 </head>
 <body>
     <div class="hero">
-        <h1>Veloquo</h1>
-        <p class="tagline">AI字幕付き動画プレイヤー</p>
-        <p class="description">
-            お手持ちの英語動画が、そのまま教材に。
-            英語+日本語の二重字幕を端末上で自動生成し、
-            リスニング力を効率的に鍛えられます。
-        </p>
-        <!-- App Store公開後にリンクを追加 -->
-        <!-- <a class="badge" href="https://apps.apple.com/app/veloquo/idXXXXXXXXXX">
-            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeからダウンロード">
-        </a> -->
+        <div class="hero-content">
+            <div class="hero-logo">Veloquo</div>
+            <p class="tagline">AI字幕付き動画プレイヤー</p>
+            <p class="description">
+                お手持ちの英語動画が、そのまま教材に。<br>
+                英語+日本語の二重字幕を端末上で自動生成し、<br>
+                リスニング力を効率的に鍛えられます。
+            </p>
+            <!-- App Store公開後にリンクを追加 -->
+            <!-- <a class="badge" href="https://apps.apple.com/app/veloquo/idXXXXXXXXXX">
+                <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeからダウンロード">
+            </a> -->
+        </div>
     </div>
 
     <div class="features">
         <h2>主な機能</h2>
+        <p class="section-sub">すべてiPhone・iPad上で完結する、シンプルな英語学習体験</p>
         <div class="feature-grid">
-            <div class="feature-card">
+            <div class="feature-card fade-in">
+                <span class="feature-icon" aria-hidden="true">CC</span>
                 <h3>二重字幕</h3>
                 <p>英語音声から字幕を自動生成し、日本語訳を並べて表示。英語だけ・日本語だけの切替も可能です。</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card fade-in">
+                <span class="feature-icon" aria-hidden="true">&#x21BB;</span>
                 <h3>1文ループ再生</h3>
                 <p>気になるフレーズをワンタップでループ。聞き取れるまで何度でも繰り返せます。</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card fade-in">
+                <span class="feature-icon" aria-hidden="true">Aa</span>
                 <h3>単語タップ辞書</h3>
                 <p>字幕内の単語をタップするだけで意味を表示。アプリから離れず学習の流れを止めません。</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card fade-in">
+                <span class="feature-icon" aria-hidden="true">&#x1F6E1;</span>
                 <h3>完全オンデバイス</h3>
                 <p>すべての処理は端末上で完結。動画のアップロード不要で、プライバシーも安心です。</p>
             </div>
         </div>
     </div>
 
-    <div class="support" id="support">
+    <div class="support fade-in" id="support">
         <h2>サポート</h2>
         <p>ご質問・不具合報告・ご要望がありましたら、お気軽にご連絡ください。</p>
-        <p><a href="mailto:veloquo.app@gmail.com">veloquo.app@gmail.com</a></p>
+        <a class="email-link" href="mailto:veloquo.app@gmail.com">veloquo.app@gmail.com</a>
     </div>
 
     <footer>
-        <p>
+        <div class="footer-links">
             <a href="privacy.html">プライバシーポリシー</a>
             <a href="terms.html">利用規約</a>
-        </p>
-        <p style="margin-top: 12px;">&copy; 2026 Veloquo</p>
+        </div>
+        <p>&copy; 2026 Veloquo</p>
     </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 80);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>

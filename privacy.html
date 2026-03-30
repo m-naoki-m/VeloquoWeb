@@ -6,58 +6,156 @@
     <title>プライバシーポリシー - Veloquo</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif;
-            color: #1a1a1a;
-            background: #fafafa;
+            font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+            color: #1a1a2e;
+            background: #f8f9fc;
             line-height: 1.8;
         }
+
+        /* Header */
         header {
-            background: linear-gradient(135deg, #4A8AF4, #8B5CF6);
+            background: linear-gradient(135deg, #4A8AF4 0%, #6B6FF7 50%, #8B5CF6 100%);
             color: white;
             text-align: center;
-            padding: 40px 20px;
+            padding: 48px 20px 44px;
+            position: relative;
+            overflow: hidden;
         }
-        header h1 { font-size: 1.5rem; }
-        header a { color: white; opacity: 0.8; text-decoration: none; font-size: 0.9rem; }
+
+        header::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: white;
+            opacity: 0.06;
+            top: -140px;
+            right: -60px;
+        }
+
+        header .back-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 600;
+            opacity: 0.85;
+            margin-bottom: 12px;
+            letter-spacing: 0.03em;
+            transition: opacity 0.2s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        header .back-link:hover {
+            opacity: 1;
+        }
+
+        header h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Content */
         .container {
             max-width: 720px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 48px 24px 64px;
         }
-        h2 {
-            font-size: 1.2rem;
-            margin: 32px 0 12px;
-            color: #333;
+
+        .updated {
+            display: inline-block;
+            font-size: 0.82rem;
+            color: #9ca3af;
+            background: #f0f1f5;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 28px;
         }
-        p, li {
+
+        .container > p {
             font-size: 0.95rem;
-            color: #444;
+            color: #4b5563;
+            margin-bottom: 12px;
+        }
+
+        h2 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin: 40px 0 14px;
+            color: #1a1a2e;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e8eaf0;
+        }
+
+        p, li {
+            font-size: 0.94rem;
+            color: #4b5563;
             margin-bottom: 8px;
         }
-        ul { padding-left: 20px; }
-        .updated {
-            font-size: 0.85rem;
-            color: #999;
-            margin-bottom: 24px;
+
+        ul {
+            padding-left: 20px;
+            margin-top: 4px;
         }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        li strong {
+            color: #1a1a2e;
+        }
+
+        a {
+            color: #4A8AF4;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: #3a6fd4;
+            text-decoration: underline;
+        }
+
+        /* Footer */
         footer {
             text-align: center;
-            padding: 32px 20px;
-            font-size: 0.85rem;
-            color: #999;
+            padding: 36px 20px;
+            border-top: 1px solid #f0f0f5;
         }
-        footer a { color: #777; text-decoration: none; }
+
+        footer a {
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        footer a:hover {
+            color: #4A8AF4;
+        }
+
+        @media (max-width: 480px) {
+            header { padding: 36px 16px 32px; }
+            .container { padding: 36px 16px 48px; }
+        }
     </style>
 </head>
 <body>
     <header>
-        <a href="index.html">Veloquo</a>
+        <a class="back-link" href="index.html">Veloquo</a>
         <h1>プライバシーポリシー</h1>
     </header>
 
     <div class="container">
-        <p class="updated">最終更新日: 2026年3月30日</p>
+        <span class="updated">最終更新日: 2026年3月30日</span>
 
         <p>Veloquo(以下「本アプリ」)は、ユーザーのプライバシーを尊重し、個人情報の保護に努めます。本プライバシーポリシーは、本アプリにおける情報の取り扱いについて説明するものです。</p>
 
@@ -80,7 +178,7 @@
         <h2>3. 第三者サービス</h2>
         <p>本アプリは、以下の第三者サービスを利用しています。</p>
         <ul>
-            <li><strong>Google AdMob</strong>: 広告の表示に使用します。AdMobは広告配信のためにデバイス情報や広告識別子を収集する場合があります。詳細は<a href="https://policies.google.com/privacy" style="color: #4A8AF4;">Googleのプライバシーポリシー</a>をご確認ください。</li>
+            <li><strong>Google AdMob</strong>: 広告の表示に使用します。AdMobは広告配信のためにデバイス情報や広告識別子を収集する場合があります。詳細は<a href="https://policies.google.com/privacy">Googleのプライバシーポリシー</a>をご確認ください。</li>
             <li><strong>Apple StoreKit</strong>: アプリ内課金の処理に使用します。決済情報はAppleが管理し、開発者がアクセスすることはありません。</li>
         </ul>
 
@@ -100,11 +198,11 @@
 
         <h2>7. お問い合わせ</h2>
         <p>プライバシーに関するご質問がある場合は、以下までご連絡ください。</p>
-        <p><a href="mailto:veloquo.app@gmail.com" style="color: #4A8AF4;">veloquo.app@gmail.com</a></p>
+        <p><a href="mailto:veloquo.app@gmail.com">veloquo.app@gmail.com</a></p>
     </div>
 
     <footer>
-        <a href="index.html">Veloquo トップページに戻る</a>
+        <a href="index.html">&larr; Veloquo トップページに戻る</a>
     </footer>
 </body>
 </html>
