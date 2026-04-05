@@ -4,277 +4,322 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veloquo - 動画で英語学習</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <style>
         :root {
-            --color-brand-blue: #4A8AF4;
-            --color-brand-purple: #8B5CF6;
-            --color-text-primary: #1a1a2e;
-            --color-text-secondary: #6b7280;
-            --color-text-tertiary: #9ca3af;
+            --color-accent: #6378F0;
+            --color-accent-hover: #4f64d6;
+            --color-text-primary: rgba(0, 0, 0, 0.92);
+            --color-text-secondary: #615d59;
+            --color-text-muted: #a39e98;
             --color-surface: #ffffff;
-            --color-bg-start: #f8f9fc;
-            --color-bg-end: #f0f2f8;
-            --color-border: rgba(0, 0, 0, 0.04);
-            --radius-card: 16px;
-            --radius-button: 12px;
-            --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --color-warm-bg: #f6f5f4;
+            --color-border: rgba(0, 0, 0, 0.1);
+            --shadow-card:
+                rgba(0,0,0,0.04) 0px 4px 18px,
+                rgba(0,0,0,0.027) 0px 2px 7.85px,
+                rgba(0,0,0,0.02) 0px 0.8px 2.93px,
+                rgba(0,0,0,0.01) 0px 0.175px 1.04px;
+            --shadow-card-hover:
+                rgba(0,0,0,0.05) 0px 8px 28px,
+                rgba(0,0,0,0.035) 0px 4px 12px,
+                rgba(0,0,0,0.02) 0px 1.5px 4px;
             --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+            font-family: Inter, -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', system-ui, sans-serif;
             color: var(--color-text-primary);
-            background: linear-gradient(180deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
+            background: var(--color-surface);
             min-height: 100vh;
-            line-height: 1.8;
-            overflow-x: hidden;
+            line-height: 1.5;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
 
         /* ─── Hero ─── */
         .hero {
-            position: relative;
-            background: linear-gradient(135deg, #4A8AF4 0%, #6B6FF7 50%, #8B5CF6 100%);
-            color: white;
             text-align: center;
-            padding: 128px 24px 104px;
-            overflow: hidden;
-        }
-
-        .hero::before,
-        .hero::after {
-            content: '';
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.07;
-            background: white;
-        }
-
-        .hero::before {
-            width: 480px;
-            height: 480px;
-            top: -160px;
-            right: -100px;
-            animation: float 12s ease-in-out infinite;
-        }
-
-        .hero::after {
-            width: 360px;
-            height: 360px;
-            bottom: -120px;
-            left: -80px;
-            animation: float 16s ease-in-out infinite reverse;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(16px, -16px) scale(1.03); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 600px;
+            padding: 120px 24px 100px;
+            max-width: 680px;
             margin: 0 auto;
         }
 
+        .hero-badge {
+            display: inline-block;
+            background: rgba(99, 120, 240, 0.08);
+            color: var(--color-accent);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            letter-spacing: 0.125px;
+            margin-bottom: 28px;
+            animation: fadeUp 0.7s var(--ease-out) both;
+        }
+
         .hero-logo {
-            font-size: 3.2rem;
+            font-size: 3.5rem;
             font-weight: 700;
-            letter-spacing: 0.02em;
-            margin-bottom: 8px;
-            animation: heroIn 0.9s var(--ease-out) both;
+            letter-spacing: -2px;
+            line-height: 1.0;
+            margin-bottom: 16px;
+            animation: fadeUp 0.7s var(--ease-out) 0.08s both;
         }
 
         .hero .tagline {
-            font-size: 1.1rem;
-            font-weight: 400;
-            opacity: 0.88;
-            margin-bottom: 28px;
-            letter-spacing: 0.06em;
-            animation: heroIn 0.9s var(--ease-out) 0.1s both;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            letter-spacing: -0.125px;
+            line-height: 1.4;
+            margin-bottom: 20px;
+            animation: fadeUp 0.7s var(--ease-out) 0.16s both;
         }
 
         .hero .description {
-            font-size: 0.98rem;
-            line-height: 2;
-            opacity: 0.8;
-            letter-spacing: 0.02em;
-            margin-bottom: 44px;
-            animation: heroIn 0.9s var(--ease-out) 0.2s both;
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            animation: fadeUp 0.7s var(--ease-out) 0.24s both;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: var(--color-accent);
+            color: #ffffff;
+            font-size: 0.94rem;
+            font-weight: 600;
+            padding: 10px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            border: 1px solid transparent;
+            transition: background 0.2s ease, transform 0.15s ease;
+            animation: fadeUp 0.7s var(--ease-out) 0.32s both;
+        }
+
+        .hero-cta:hover {
+            background: var(--color-accent-hover);
+        }
+
+        .hero-cta:active {
+            transform: scale(0.96);
         }
 
         .badge {
             display: inline-block;
-            animation: heroIn 0.9s var(--ease-out) 0.3s both;
+            animation: fadeUp 0.7s var(--ease-out) 0.32s both;
         }
 
         .badge img {
             height: 52px;
-            transition: transform 0.4s var(--spring);
+            transition: transform 0.3s var(--ease-out);
         }
 
         .badge img:hover {
-            transform: scale(1.06);
+            transform: scale(1.04);
         }
 
-        @keyframes heroIn {
-            from { opacity: 0; transform: translateY(28px); }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         /* ─── Features ─── */
         .features {
-            padding: 104px 24px;
+            background: var(--color-warm-bg);
+            padding: 96px 24px;
+        }
+
+        .features-inner {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .features h2 {
             text-align: center;
-            font-size: 1.5rem;
+            font-size: 2rem;
             font-weight: 700;
-            letter-spacing: 0.02em;
+            letter-spacing: -1px;
+            line-height: 1.0;
             margin-bottom: 12px;
-            color: var(--color-text-primary);
         }
 
         .features .section-sub {
             text-align: center;
             color: var(--color-text-secondary);
-            font-size: 0.92rem;
-            letter-spacing: 0.02em;
+            font-size: 1rem;
             margin-bottom: 56px;
         }
 
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            max-width: 760px;
-            margin: 0 auto;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
         }
 
         .feature-card {
             background: var(--color-surface);
-            border-radius: var(--radius-card);
-            padding: 36px 28px;
+            border-radius: 12px;
+            padding: 32px 28px;
             border: 1px solid var(--color-border);
-            box-shadow:
-                0 1px 2px rgba(0, 0, 0, 0.03),
-                0 4px 16px rgba(0, 0, 0, 0.03);
+            box-shadow: var(--shadow-card);
             transition:
-                transform 0.5s var(--spring),
+                transform 0.4s var(--ease-out),
                 box-shadow 0.4s var(--ease-out);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--color-brand-blue), var(--color-brand-purple));
-            opacity: 0;
-            transition: opacity 0.4s var(--ease-out);
         }
 
         .feature-card:hover {
-            transform: translateY(-6px);
-            box-shadow:
-                0 4px 12px rgba(74, 138, 244, 0.06),
-                0 16px 40px rgba(74, 138, 244, 0.08);
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-card-hover);
         }
 
         .feature-icon {
-            font-size: 1.4rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(99, 120, 240, 0.08);
+            color: var(--color-accent);
+            border-radius: 8px;
             margin-bottom: 16px;
-            display: block;
-            opacity: 0.9;
+        }
+
+        .feature-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
         .feature-card h3 {
             font-size: 1rem;
-            font-weight: 600;
-            letter-spacing: 0.01em;
-            margin-bottom: 10px;
-            color: var(--color-text-primary);
+            font-weight: 700;
+            letter-spacing: -0.25px;
+            margin-bottom: 8px;
         }
 
         .feature-card p {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: var(--color-text-secondary);
-            line-height: 1.85;
-            letter-spacing: 0.01em;
+            line-height: 1.7;
+        }
+
+        /* ─── How it works ─── */
+        .how-it-works {
+            padding: 96px 24px;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.0;
+            margin-bottom: 48px;
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .step {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: var(--color-accent);
+            color: #ffffff;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .step-content h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.25px;
+            margin-bottom: 4px;
+        }
+
+        .step-content p {
+            font-size: 0.88rem;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
         }
 
         /* ─── Support ─── */
         .support {
-            background: var(--color-surface);
-            padding: 96px 24px;
+            background: var(--color-warm-bg);
+            padding: 80px 24px;
             text-align: center;
-            border-top: 1px solid rgba(0, 0, 0, 0.04);
         }
 
         .support h2 {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            letter-spacing: 0.02em;
-            margin-bottom: 14px;
-            color: var(--color-text-primary);
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
         }
 
         .support p {
             color: var(--color-text-secondary);
+            font-size: 0.94rem;
             margin-bottom: 8px;
-            font-size: 0.92rem;
-            letter-spacing: 0.01em;
         }
 
         .support .email-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--color-brand-blue);
+            display: inline-block;
+            color: var(--color-accent);
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.95rem;
-            margin-top: 12px;
-            padding: 10px 24px;
-            border-radius: var(--radius-button);
-            transition:
-                background 0.4s var(--ease-out),
-                transform 0.4s var(--spring);
+            font-size: 0.94rem;
+            margin-top: 8px;
+            transition: color 0.2s ease;
         }
 
         .support .email-link:hover {
-            background: rgba(74, 138, 244, 0.06);
-            transform: translateY(-1px);
+            color: var(--color-accent-hover);
+            text-decoration: underline;
         }
 
         /* ─── Footer ─── */
         footer {
             text-align: center;
-            padding: 44px 24px;
+            padding: 40px 24px;
             font-size: 0.82rem;
-            color: var(--color-text-tertiary);
-            border-top: 1px solid rgba(0, 0, 0, 0.04);
-            letter-spacing: 0.01em;
+            color: var(--color-text-muted);
+            border-top: 1px solid var(--color-border);
         }
 
         footer .footer-links {
             display: flex;
             justify-content: center;
             gap: 32px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         footer a {
@@ -282,20 +327,20 @@
             text-decoration: none;
             font-size: 0.85rem;
             font-weight: 500;
-            transition: color 0.3s var(--ease-out);
+            transition: color 0.2s ease;
         }
 
         footer a:hover {
-            color: var(--color-brand-blue);
+            color: var(--color-accent);
         }
 
         /* ─── Scroll Animation ─── */
         .fade-in {
             opacity: 0;
-            transform: translateY(24px);
+            transform: translateY(20px);
             transition:
-                opacity 0.7s var(--ease-out),
-                transform 0.7s var(--spring);
+                opacity 0.6s var(--ease-out),
+                transform 0.6s var(--ease-out);
         }
 
         .fade-in.visible {
@@ -304,62 +349,92 @@
         }
 
         /* ─── Responsive ─── */
-        @media (max-width: 480px) {
-            .hero { padding: 88px 20px 72px; }
-            .hero-logo { font-size: 2.6rem; }
-            .hero .description { font-size: 0.92rem; line-height: 1.9; }
+        @media (max-width: 600px) {
+            .hero { padding: 80px 20px 64px; }
+            .hero-logo { font-size: 2.8rem; letter-spacing: -1.5px; }
+            .hero .tagline { font-size: 1.1rem; }
+            .hero .description { font-size: 0.94rem; }
             .features { padding: 72px 20px; }
-            .features .section-sub { margin-bottom: 40px; }
-            .support { padding: 72px 20px; }
-            footer { padding: 36px 20px; }
+            .features h2, .how-it-works h2 { font-size: 1.6rem; letter-spacing: -0.75px; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .how-it-works { padding: 72px 20px; }
+            .support { padding: 64px 20px; }
+            footer { padding: 32px 20px; }
         }
     </style>
 </head>
 <body>
     <div class="hero">
-        <div class="hero-content">
-            <div class="hero-logo">Veloquo</div>
-            <p class="tagline">AI字幕付き動画プレイヤー</p>
-            <p class="description">
-                お手持ちの英語動画が、そのまま教材に。<br>
-                英語+日本語の二重字幕を端末上で自動生成し、<br>
-                リスニング力を効率的に鍛えられます。
-            </p>
-            <!-- App Store公開後にリンクを追加 -->
-            <!-- <a class="badge" href="https://apps.apple.com/app/veloquo/idXXXXXXXXXX">
-                <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeからダウンロード">
-            </a> -->
-        </div>
+        <span class="hero-badge">iOS / iPadOS</span>
+        <div class="hero-logo">Veloquo</div>
+        <p class="tagline">動画を見るだけで、英語が身につく</p>
+        <p class="description">
+            お手持ちの英語動画から、英語＋日本語の二重字幕を端末上で自動生成。<br>
+            アップロード不要、すべてオンデバイスで完結する英語学習プレイヤーです。
+        </p>
+        <!-- App Store公開後にリンクを追加 -->
+        <!-- <a class="badge" href="https://apps.apple.com/app/veloquo/idXXXXXXXXXX">
+            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp" alt="App Storeからダウンロード">
+        </a> -->
     </div>
 
     <div class="features">
-        <h2>主な機能</h2>
-        <p class="section-sub">すべてiPhone・iPad上で完結する、シンプルな英語学習体験</p>
-        <div class="feature-grid">
-            <div class="feature-card fade-in">
-                <span class="feature-icon" aria-hidden="true">CC</span>
-                <h3>二重字幕</h3>
-                <p>英語音声から字幕を自動生成し、日本語訳を並べて表示。英語だけ・日本語だけの切替も可能です。</p>
-            </div>
-            <div class="feature-card fade-in">
-                <span class="feature-icon" aria-hidden="true">&#x21BB;</span>
-                <h3>1文ループ再生</h3>
-                <p>気になるフレーズをワンタップでループ。聞き取れるまで何度でも繰り返せます。</p>
-            </div>
-            <div class="feature-card fade-in">
-                <span class="feature-icon" aria-hidden="true">Aa</span>
-                <h3>単語タップ辞書</h3>
-                <p>字幕内の単語をタップするだけで意味を表示。アプリから離れず学習の流れを止めません。</p>
-            </div>
-            <div class="feature-card fade-in">
-                <span class="feature-icon" aria-hidden="true">&#x1F6E1;</span>
-                <h3>完全オンデバイス</h3>
-                <p>すべての処理は端末上で完結。動画のアップロード不要で、プライバシーも安心です。</p>
+        <div class="features-inner">
+            <h2>主な機能</h2>
+            <p class="section-sub">すべてiPhone・iPad上で完結する、シンプルな英語学習体験</p>
+            <div class="feature-grid">
+                <div class="feature-card fade-in">
+                    <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="3"/><line x1="6" y1="11" x2="11" y2="11"/><line x1="6" y1="15" x2="18" y2="15"/><line x1="13" y1="11" x2="18" y2="11"/></svg></span>
+                    <h3>二重字幕</h3>
+                    <p>英語音声から字幕を自動生成し、日本語訳を並べて表示。英語だけ・日本語だけの切替も可能です。</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+                    <h3>1文ループ再生</h3>
+                    <p>気になるフレーズをワンタップでループ。聞き取れるまで何度でも繰り返せます。</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/><path d="M9 14l2-6 2 6" stroke-width="1.6"/><line x1="9.5" y1="12.5" x2="12.5" y2="12.5" stroke-width="1.6"/></svg></span>
+                    <h3>単語タップ辞書</h3>
+                    <p>字幕内の単語をタップするだけで意味を表示。アプリから離れず学習の流れを止めません。</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><circle cx="12" cy="16" r="1" fill="currentColor" stroke="none"/></svg></span>
+                    <h3>プライバシー保護</h3>
+                    <p>動画も音声もサーバーに送信しません。すべての処理が端末上で完結するため、あなたのデータは外部に一切出ません。</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="support fade-in" id="support">
+    <div class="how-it-works fade-in">
+        <h2>使い方</h2>
+        <div class="steps">
+            <div class="step">
+                <span class="step-number">1</span>
+                <div class="step-content">
+                    <h3>動画を選ぶ</h3>
+                    <p>iPhone・iPad内の英語動画を選択するだけ。ダウンロード済みの教材や撮影動画に対応しています。</p>
+                </div>
+            </div>
+            <div class="step">
+                <span class="step-number">2</span>
+                <div class="step-content">
+                    <h3>字幕が自動生成される</h3>
+                    <p>再生と同時に英語字幕をストリーミング生成。日本語訳も自動で追いかけます。</p>
+                </div>
+            </div>
+            <div class="step">
+                <span class="step-number">3</span>
+                <div class="step-content">
+                    <h3>気になる箇所を深掘り</h3>
+                    <p>1文ループで何度も聞き直し、知らない単語はタップして意味を確認。実践的に身につきます。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="support fade-in">
         <h2>サポート</h2>
         <p>ご質問・不具合報告・ご要望がありましたら、お気軽にご連絡ください。</p>
         <a class="email-link" href="mailto:naoki.2002.01.01@gmail.com">naoki.2002.01.01@gmail.com</a>
@@ -377,7 +452,7 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, i) => {
                 if (entry.isIntersecting) {
-                    setTimeout(() => entry.target.classList.add('visible'), i * 100);
+                    setTimeout(() => entry.target.classList.add('visible'), i * 80);
                     observer.unobserve(entry.target);
                 }
             });

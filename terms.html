@@ -4,125 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>利用規約 - Veloquo</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <style>
         :root {
-            --color-brand-blue: #4A8AF4;
-            --color-brand-purple: #8B5CF6;
-            --color-text-primary: #1a1a2e;
-            --color-text-secondary: #4b5563;
-            --color-text-tertiary: #9ca3af;
+            --color-accent: #6378F0;
+            --color-accent-hover: #4f64d6;
+            --color-text-primary: rgba(0, 0, 0, 0.92);
+            --color-text-secondary: #615d59;
+            --color-text-muted: #a39e98;
             --color-surface: #ffffff;
-            --color-bg-start: #f8f9fc;
-            --color-bg-end: #f0f2f8;
-            --color-border: #e8eaf0;
-            --radius-badge: 20px;
-            --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --color-warm-bg: #f6f5f4;
+            --color-border: rgba(0, 0, 0, 0.1);
             --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+            font-family: Inter, -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', system-ui, sans-serif;
             color: var(--color-text-primary);
-            background: linear-gradient(180deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
+            background: var(--color-surface);
             min-height: 100vh;
-            line-height: 1.85;
+            line-height: 1.5;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
 
         /* ─── Header ─── */
         header {
-            background: linear-gradient(135deg, #4A8AF4 0%, #6B6FF7 50%, #8B5CF6 100%);
-            color: white;
+            border-bottom: 1px solid var(--color-border);
+            padding: 56px 24px 48px;
             text-align: center;
-            padding: 60px 24px 56px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            width: 360px;
-            height: 360px;
-            border-radius: 50%;
-            background: white;
-            opacity: 0.05;
-            top: -160px;
-            right: -80px;
         }
 
         header .back-link {
             display: inline-block;
-            color: white;
+            color: var(--color-text-secondary);
             text-decoration: none;
             font-size: 0.88rem;
             font-weight: 500;
-            opacity: 0.8;
-            margin-bottom: 16px;
-            letter-spacing: 0.04em;
-            transition:
-                opacity 0.3s var(--ease-out),
-                transform 0.4s var(--spring);
-            position: relative;
-            z-index: 1;
+            margin-bottom: 20px;
+            transition: color 0.2s ease;
         }
 
         header .back-link:hover {
-            opacity: 1;
-            transform: translateX(-2px);
+            color: var(--color-accent);
         }
 
         header h1 {
-            font-size: 1.5rem;
+            font-size: 2rem;
             font-weight: 700;
-            letter-spacing: 0.02em;
-            position: relative;
-            z-index: 1;
+            letter-spacing: -1px;
+            line-height: 1.0;
         }
 
         /* ─── Content ─── */
         .container {
             max-width: 680px;
             margin: 0 auto;
-            padding: 56px 28px 80px;
+            padding: 48px 28px 80px;
         }
 
         .updated {
             display: inline-block;
-            font-size: 0.8rem;
-            color: var(--color-text-tertiary);
-            background: rgba(0, 0, 0, 0.03);
-            padding: 5px 14px;
-            border-radius: var(--radius-badge);
-            margin-bottom: 36px;
-            letter-spacing: 0.01em;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            background: rgba(99, 120, 240, 0.08);
+            padding: 4px 12px;
+            border-radius: 9999px;
+            letter-spacing: 0.125px;
+            margin-bottom: 32px;
         }
 
         .container > p {
-            font-size: 0.93rem;
+            font-size: 0.94rem;
             color: var(--color-text-secondary);
             margin-bottom: 14px;
-            letter-spacing: 0.01em;
+            line-height: 1.8;
         }
 
         h2 {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 700;
             margin: 48px 0 16px;
             color: var(--color-text-primary);
             padding-bottom: 10px;
-            border-bottom: 1.5px solid var(--color-border);
-            letter-spacing: 0.02em;
+            border-bottom: 1px solid var(--color-border);
+            letter-spacing: -0.25px;
         }
 
         p, li {
             font-size: 0.92rem;
             color: var(--color-text-secondary);
             margin-bottom: 10px;
-            letter-spacing: 0.01em;
+            line-height: 1.8;
         }
 
         ul {
@@ -132,7 +111,6 @@
 
         li {
             margin-bottom: 8px;
-            line-height: 1.85;
         }
 
         li strong {
@@ -141,45 +119,40 @@
         }
 
         a {
-            color: var(--color-brand-blue);
+            color: var(--color-accent);
             text-decoration: none;
-            transition: color 0.3s var(--ease-out);
+            transition: color 0.2s ease;
         }
 
         a:hover {
-            color: #3a6fd4;
+            color: var(--color-accent-hover);
             text-decoration: underline;
         }
 
         /* ─── Footer ─── */
         footer {
             text-align: center;
-            padding: 44px 24px;
-            border-top: 1px solid rgba(0, 0, 0, 0.04);
+            padding: 40px 24px;
+            border-top: 1px solid var(--color-border);
         }
 
         footer a {
-            color: var(--color-text-tertiary);
+            color: var(--color-text-secondary);
             text-decoration: none;
             font-size: 0.85rem;
             font-weight: 500;
-            letter-spacing: 0.01em;
-            transition:
-                color 0.3s var(--ease-out),
-                transform 0.4s var(--spring);
-            display: inline-block;
+            transition: color 0.2s ease;
         }
 
         footer a:hover {
-            color: var(--color-brand-blue);
-            transform: translateX(-2px);
+            color: var(--color-accent);
         }
 
         /* ─── Responsive ─── */
-        @media (max-width: 480px) {
-            header { padding: 44px 20px 40px; }
-            header h1 { font-size: 1.35rem; }
-            .container { padding: 40px 20px 60px; }
+        @media (max-width: 600px) {
+            header { padding: 40px 20px 36px; }
+            header h1 { font-size: 1.6rem; letter-spacing: -0.75px; }
+            .container { padding: 36px 20px 60px; }
             h2 { margin: 40px 0 14px; }
         }
     </style>
